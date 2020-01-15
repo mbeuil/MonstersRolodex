@@ -10,15 +10,15 @@ class App extends Component {
       monsters: [
         {
           name: "Frankenstein",
-          id: "m1"
+          id: "1"
         },
         {
           name: "Dracula",
-          id: "m2"
+          id: "2"
         },
         {
           name: "Zombie",
-          id: "m3"
+          id: "3"
         }
       ]
     };
