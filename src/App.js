@@ -26,9 +26,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.state.monsters.map(monster => (
-          <h1 key> {monster.name} </h1>
-        ))}
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          {this.state.monsters.map(monster => (
+            <div>
+              <h1 key> {monster.name} </h1>
+              <p>monter n'{monster.id}</p>
+            </div>
+          ))}
+        </header>
       </div>
     );
   }
