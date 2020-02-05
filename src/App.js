@@ -35,6 +35,7 @@ class App extends Component {
               <p>monter n'{monster.id}</p>
             </div>
           ))}
+          <i data-vi="card"></i>
         </header>
       </div>
     );
