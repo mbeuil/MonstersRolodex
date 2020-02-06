@@ -1,27 +1,29 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import "vivid-icons";
+import { CardList } from "./components/card-list/card-list.component";
+
+/*
+ * App.js file
+ *
+ * Class component that render the rolodex page.
+ */
 
 class App extends Component {
   constructor() {
     super();
 
     this.state = {
-      monsters: [
-        {
-          name: "Frankenstein",
-          id: "1"
-        },
-        {
-          name: "Dracula",
-          id: "2"
-        },
-        {
-          name: "Zombie",
-          id: "3s"
-        }
-      ]
+      monsters: [],
+      searchField: []
     };
+  }
+
+  componentDidMount() {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then(response => response.json())
+      .then(users => this.setState({ monsters: users }));
   }
 
   render() {
@@ -29,13 +31,12 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          {this.state.monsters.map(monster => (
-            <div>
-              <h1 key> {monster.name} </h1>
-              <p>monter n'{monster.id}</p>
-            </div>
-          ))}
-          <i data-vi="card"></i>
+          <input
+            type="search"
+            placeholder="search monster"
+            onChange={e => this.setState({ searchField: e.target.value })}
+          />
+          <CardList monsters={this.state.monsters} />
         </header>
       </div>
     );
