@@ -4,7 +4,7 @@ import "./search-box.style.css";
 /**
  * search-box.component.jsx
  *
- * Functional component that build a search box to filter a list of object.
+ * Functional component that build a search input to filter a list of object.
  *
  * @param placefolder property $placeholder
  * @param function applied onChange  $handleChange
