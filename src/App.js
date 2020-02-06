@@ -1,14 +1,19 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
-import "./App.css";
 import "vivid-icons";
 import { CardList } from "./components/card-list/card-list.component";
-
-/*
- * App.js file
+import { SearchBox } from "./components/search-box/search-box.component";
+/***
+ * App.js
  *
- * Class component that render the rolodex page.
- */
+ * Class component that render the rolodex page
+ * Create an array of users from an external API.
+ *
+ * usefull nomenclature:
+ * const {monsters, searchField} = this.state;
+ * =
+ * const monsters = this.state.monsters;
+ * const searchField = this.state.searchField;
+ ***/
 
 class App extends Component {
   constructor() {
@@ -16,7 +21,7 @@ class App extends Component {
 
     this.state = {
       monsters: [],
-      searchField: []
+      searchField: ""
     };
   }
 
@@ -27,17 +32,20 @@ class App extends Component {
   }
 
   render() {
+    const { monsters, searchField } = this.state;
+    const filteredMonsters = monsters.filter(monster =>
+      monster.name.toLowerCase().includes(searchField.toLowerCase())
+    );
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <input
-            type="search"
-            placeholder="search monster"
-            onChange={e => this.setState({ searchField: e.target.value })}
-          />
-          <CardList monsters={this.state.monsters} />
-        </header>
+        <SearchBox
+          placeholder="search monster"
+          handleChange={searchWord =>
+            this.setState({ searchField: searchWord.target.value })
+          }
+        />
+        <CardList monsters={filteredMonsters} />
       </div>
     );
   }
